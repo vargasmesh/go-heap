@@ -31,6 +31,22 @@ func ExtractRoot[T any](t []T, less Less[T]) (T, []T) {
 	return root, t
 }
 
+// Insert inserts a new node into the heap and rebalance it
+func Insert[T any](value T, heap []T, less Less[T]) []T {
+	heap = append(heap, value)
+	up(len(heap)-1, heap, less)
+	return heap
+}
+
+func up[T any](currentIdx int, heap []T, less Less[T]) {
+	parentIdx := (currentIdx - 1) / 2
+	for currentIdx >= 0 && less(heap[currentIdx], heap[parentIdx]) {
+		heap[currentIdx], heap[parentIdx] = heap[parentIdx], heap[currentIdx]
+		currentIdx = parentIdx
+		parentIdx = (currentIdx - 1) / 2
+	}
+}
+
 func down[T any](currentIdx, endIdx int, less Less[T], heap []T) {
 	childOneIdx := currentIdx*2 + 1
 	for childOneIdx <= endIdx {
