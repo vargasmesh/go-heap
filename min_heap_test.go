@@ -42,13 +42,13 @@ func verifyMinHeap(t *testing.T, h []int) {
 
 		if childLeft < length {
 			if less(h[childLeft], currentNode) {
-				t.FailNow()
+				t.Errorf("%d is lesser than %d", h[childLeft], currentNode)
 			}
 		}
 
 		if childRight < length {
 			if less(h[childRight], currentNode) {
-				t.FailNow()
+				t.Errorf("%d is lesser than %d", h[childRight], currentNode)
 			}
 		}
 
