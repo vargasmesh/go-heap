@@ -31,7 +31,7 @@ func ExtractRoot[T any](t []T, less Less[T]) (T, []T) {
 	return root, t
 }
 
-func down[T any, L Less[T]](currentIdx, endIdx int, less L, heap []T) {
+func down[T any](currentIdx, endIdx int, less Less[T], heap []T) {
 	childOneIdx := currentIdx*2 + 1
 	for childOneIdx <= endIdx {
 		idxToSwap := childOneIdx
